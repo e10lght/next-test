@@ -1,11 +1,22 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import styles from "@/styles/Home.module.css";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const router = useRouter();
+  const [path, setPath] = useState("");
+  const onClickMove = () => {
+    router.push(path);
+  };
+  const onChangePath = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPath(e.target.value);
+  };
   return (
     <>
       <Head>
@@ -26,7 +37,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              By{' '}
+              By{" "}
               <Image
                 src="/vercel.svg"
                 alt="Vercel Logo"
@@ -50,6 +61,30 @@ export default function Home() {
           />
         </div>
 
+        <Link href={{ pathname: "/isr", query: { keyword: "hello" } }}>
+          <a>isr</a>
+        </Link>
+        <Link href="/ssr">
+          <a>ssr</a>
+        </Link>
+        <Link href="/ssg">
+          <a>ssg</a>
+        </Link>
+        <Link href="/posts/1">
+          <a>1</a>
+        </Link>
+        <Link href="/posts/2">
+          <a>2</a>
+        </Link>
+        <Link href="/image">
+          <a>画像比較</a>
+        </Link>
+        <Link href="/sayhello">
+          <a>apiからデータ取得</a>
+        </Link>
+        <input type="text" onChange={onChangePath} />
+        <button onClick={onClickMove}>router.pushで{path}に移動</button>
+
         <div className={styles.grid}>
           <a
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -60,9 +95,7 @@ export default function Home() {
             <h2>
               Docs <span>-&gt;</span>
             </h2>
-            <p>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
+            <p>Find in-depth information about Next.js features and&nbsp;API.</p>
           </a>
 
           <a
@@ -74,9 +107,7 @@ export default function Home() {
             <h2>
               Learn <span>-&gt;</span>
             </h2>
-            <p>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
+            <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
           </a>
 
           <a
@@ -88,9 +119,7 @@ export default function Home() {
             <h2>
               Templates <span>-&gt;</span>
             </h2>
-            <p>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
+            <p>Discover and deploy boilerplate example Next.js&nbsp;projects.</p>
           </a>
 
           <a
@@ -102,13 +131,10 @@ export default function Home() {
             <h2>
               Deploy <span>-&gt;</span>
             </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
+            <p>Instantly deploy your Next.js site to a shareable URL with&nbsp;Vercel.</p>
           </a>
         </div>
       </main>
     </>
-  )
+  );
 }
