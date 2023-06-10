@@ -30,9 +30,13 @@ export const getServerSideProps: GetServerSideProps<SSRProps> = async (context) 
   const timestamp = new Date().toLocaleString();
   const message = `${timestamp} にこのページのgetServerSidePropsが実行されました`;
   console.log(message);
-  const res = await fetch(`${process.env.LOCAL_URL}/api/hello`);
-  const result = await res.json();
-  console.log(result);
+  try {
+    const res = await fetch(`${process.env.LOCAL_URL}/api/hello`);
+    const result = await res.json();
+    console.log(result);
+  } catch (error: unknown) {
+    if (error instanceof Error) console.log(error.message);
+  }
 
   return {
     props: {
