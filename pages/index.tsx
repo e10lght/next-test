@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import styled from "styled-components";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -60,6 +61,8 @@ export default function Home() {
             priority
           />
         </div>
+
+        <H1>Welcome!</H1>
 
         <Link href={{ pathname: "/isr", query: { keyword: "hello" } }}>
           <a>isr</a>
@@ -138,3 +141,7 @@ export default function Home() {
     </>
   );
 }
+
+const H1 = styled.h1`
+  color: red;
+`;
