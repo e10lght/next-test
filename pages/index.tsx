@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
+import { DelayInput } from "@/components/DelayInput";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,9 @@ export default function Home() {
   };
   const onChangePath = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPath(e.target.value);
+  };
+  const onChangeDelayInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
   };
   return (
     <>
@@ -87,6 +91,8 @@ export default function Home() {
         </Link>
         <input type="text" onChange={onChangePath} />
         <button onClick={onClickMove}>router.pushで{path}に移動</button>
+
+        <DelayInput onChange={onChangeDelayInput} />
 
         <div className={styles.grid}>
           <a

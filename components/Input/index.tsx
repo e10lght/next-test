@@ -17,7 +17,7 @@ export const Input = (props: InputProps) => {
     <div>
       <label htmlFor={props.id}>{label}</label>
       <input {...rest} type="text" value={text} onChange={onChangeInput} />
-      <button onClick={resetInputField}></button>
+      <button onClick={resetInputField}>Reset</button>
     </div>
   );
 };
